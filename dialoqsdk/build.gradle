@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('dialoqsdk-release-3.0.0-13.aar'))

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AndroidPenSDK</string>
+
+    <string name="tab_title_connections">Connections</string>
+    <string name="available_connections">Available Connections</string>
+
+    <string name="lilly_tempo_title">Lilly Tempo</string>
+    <string name="lilly_connect_description">Connect to new Lilly pen.</string>
+
+    <string name="novo_nordisk_title">Novo Nordisk</string>
+    <string name="novo_connect_description">Connect to new Novo pen.</string>
+
+    <string name="pen_no_connected">You haven\'t connected any pen yet. </string>
+
+    <string name="select_pen_connect">Select a pen to connect.</string>
+    <string name="pen_details">Pen info.</string>
+
+    <string name="pen_lilly_connected">This is Lilly Tempo connected.</string>
+    <string name="pen_novo_connected">This is Novo Nordisk connected.</string>
+
+</resources>

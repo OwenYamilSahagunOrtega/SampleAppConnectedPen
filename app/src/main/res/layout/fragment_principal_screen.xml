@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.dexcom.democonnectedpen.FragmentPrincipleScreenViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_connections_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="#FFEEEDED">
+
+        <TextView
+            android:id="@+id/id_connections_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_title_connections"
+            android:textAppearance="@style/TextAppearance.Polaris.Headline5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Connected pen card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/id_pen_avaible_cell"
+            style="@style/Widget.Polaris.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/id_connections_label">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/id_devices_connected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <!-- "pen name connected" -->
+                <TextView
+                    android:id="@+id/id_pen_no_connected"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/pen_no_connected"
+                    android:textAppearance="@style/TextAppearance.Polaris.Header.Medium"
+                    android:layout_margin="10dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Available title -->
+        <TextView
+            android:id="@+id/id_available_connections_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/available_connections"
+            android:textAppearance="@style/TextAppearance.Polaris.Headline5"
+            app:layout_constraintTop_toBottomOf="@id/id_pen_avaible_cell" />
+
+        <!-- Novo nordisk connect -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/id_connections_novonordisk_cell_available"
+            style="@style/Widget.Polaris.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/id_available_connections_label">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Connected pen Novo Nordisk logo -->
+                <ImageView
+                    android:id="@+id/id_novonordisk_image_available"
+                    android:layout_width="@dimen/polaris_icon_size"
+                    android:layout_height="@dimen/polaris_icon_size"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_novo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- "novo nordisk" -->
+                <TextView
+                    android:id="@+id/id_novonordisk_title_label_available"
+                    android:textAppearance="@style/TextAppearance.Polaris.Header.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/novo_nordisk_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/id_novonordisk_image_available"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Connected pen novo description -->
+                <TextView
+                    android:id="@+id/id_novonordisk_description_label_available"
+                    android:textAppearance="@style/TextAppearance.Polaris.Summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/novo_connect_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_novonordisk_title_label_available" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Connected pen lilly card when share onboarding hasn't happened yet -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/id_lilly_share_cell_available"
+            style="@style/Widget.Polaris.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{(view) -> vm.toDialogConnectNewPen(view)}"
+            app:layout_constraintTop_toBottomOf="@+id/id_connections_novonordisk_cell_available">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Connected pen lilly logo -->
+                <ImageView
+                    android:id="@+id/id_lilly_image_available"
+                    android:layout_width="@dimen/polaris_icon_size"
+                    android:layout_height="@dimen/polaris_icon_size"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_lilly"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- "Lilly title" -->
+                <TextView
+                    android:id="@+id/id_lilly_title_label_available"
+                    android:textAppearance="@style/TextAppearance.Polaris.Header.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/lilly_tempo_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/id_lilly_image_available"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Connected pen lilly description -->
+                <TextView
+                    android:id="@+id/id_lilly_description_label_available"
+                    android:textAppearance="@style/TextAppearance.Polaris.Summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/lilly_connect_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id_lilly_title_label_available" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

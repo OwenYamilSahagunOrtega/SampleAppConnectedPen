@@ -1,0 +1,6 @@
+rootProject.name = "AndroidPenSDK"
+include ':app'
+include ':dialoqsdk'
+include ':lillycore'
+include ':insulintransmitter'
+include ':android-insulinpen'

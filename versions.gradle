@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2020 Dexcom, Inc.
+ * Licenses to third-party material that may be incorporated into this software are listed at www.dexcom.com/notices
+ */
+
+ext.versions = [
+        appcompat            : '1.3.1',
+        constraint           : '2.0.4',
+
+        coreKtx              : '1.6.0',
+        gradle               : '4.1.1',
+        koin                 : '2.1.5',
+        kotlin               : '1.6.21',
+        kotlinCoroutineCore  : '1.3.5',
+        kotlinReflection     : '1.6.0',
+        lifecycleCompiler    : '2.3.1',
+        lifecycleExt         : '2.2.0',
+        material             : '1.4.0',
+        nav_version          : '2.4.2',
+
+        minSDK: 29,
+        targetSDK: 31,
+        compileSDK: 31,
+        buildToolSDK: "30.0.2"
+]

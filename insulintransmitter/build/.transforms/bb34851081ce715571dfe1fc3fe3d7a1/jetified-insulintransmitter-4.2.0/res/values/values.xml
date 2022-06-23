@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">lillydevice</string>
+    <string name="cancel">Cancel</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="disconnect_confirmation_message">Are you sure you want to disconnect?</string>
+    <string name="firmware_revision">Firmware Version</string>
+    <string name="hardware_revision">Hardware Revision</string>
+    <string name="manufacturer_name">Manufacturer Name</string>
+    <string name="model_name">Model Number</string>
+    <string name="pnp_id">PnP ID</string>
+    <string name="serial_name">Serial Number</string>
+    <string name="software_revision">Software Revision</string>
+    <string name="system_id">System ID</string>
+    <string name="unavailable">unavailable</string>
+</resources>

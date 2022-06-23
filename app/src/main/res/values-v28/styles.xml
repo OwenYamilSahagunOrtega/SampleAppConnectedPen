@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+
+    <dimen name="polaris_shape_corner_size_medium_component">12dp</dimen>
+    <dimen name="polaris_icon_size">32dp</dimen>
+
+    <style name="Widget.MaterialComponents.CardView" parent="CardView">
+        <item name="enforceMaterialTheme">true</item>
+        <item name="android:stateListAnimator" ns1:ignore="NewApi">
+            @animator/mtrl_card_state_list_anim</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="cardCornerRadius">@null</item>
+        <item name="cardElevation">@dimen/mtrl_card_elevation</item>
+        <item name="cardForegroundColor">@color/mtrl_card_view_foreground</item>
+        <item name="checkedIcon">@drawable/ic_mtrl_checked_circle</item>
+        <item name="checkedIconTint">?attr/colorPrimary</item>
+        <item name="checkedIconSize">@dimen/mtrl_card_checked_icon_size</item>
+        <item name="checkedIconMargin">@dimen/mtrl_card_checked_icon_margin</item>
+        <item name="rippleColor">@color/mtrl_card_view_ripple</item>
+        <item name="shapeAppearance">?attr/shapeAppearanceMediumComponent</item>
+    </style>
+
+    <style name="Base.TextAppearance.Polaris.Header" parent="TextAppearance.AppCompat"/>
+
+    <style name="TextAppearance.Polaris.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">28dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Polaris.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">@dimen/polaris_shape_corner_size_medium_component</item>
+    </style>
+
+    <style name="Widget.Polaris.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearance">@style/ShapeAppearance.Polaris.MediumComponent</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="TextAppearance.Polaris.Header.Medium" parent="Base.TextAppearance.Polaris.Header">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+
+    <style name="TextAppearance.Polaris.Summary" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">21dp</item>
+    </style>
+</resources>

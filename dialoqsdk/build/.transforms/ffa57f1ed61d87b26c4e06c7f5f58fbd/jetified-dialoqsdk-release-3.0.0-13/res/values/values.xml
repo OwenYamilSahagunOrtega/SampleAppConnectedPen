@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="ic_notification_icon"/>
+    <drawable name="ic_notification_reboot_icon"/>
+    <string name="notification_channel_description"/>
+    <string name="notification_channel_name"/>
+    <string name="text_device_connected_notification">%1$s</string>
+    <string name="text_foreground_notification"/>
+    <string name="text_reboot_notification"/>
+    <string name="title_foreground_notification"/>
+    <string name="title_reboot_notification"/>
+</resources>
