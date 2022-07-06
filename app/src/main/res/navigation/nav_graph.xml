@@ -3,38 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/id_principal_fragment">
+    app:startDestination="@id/id_connections_fragment">
 
     <fragment
-    android:id="@+id/id_principal_fragment"
-    android:name="com.dexcom.democonnectedpen.FragmentPrincipleScreen"
-    tools:layout="@layout/fragment_principal_screen">
-
+        android:id="@+id/id_connections_fragment"
+        android:name="com.dexcom.democonnectedpen.ui.fragments.connections.FragmentConnectionsScreen"
+        tools:layout="@layout/fragment_connections_screen">
+        
         <action
-            android:id="@+id/action_principal_to_new_device"
-            app:destination="@id/id_devices_dialog_fragment" />
+            android:id="@+id/action_connections_to_pen_information"
+            app:destination="@id/id_pen_information_fragment" />
         <action
-            android:id="@+id/action_principal_to_information"
-            app:destination="@id/id_information_fragment" />
+            android:id="@+id/action_connections_to_lilly_devices"
+            app:destination="@id/id_lilly_devices_dialog" />
+        <action
+            android:id="@+id/action_connections_to_novo_devices"
+            app:destination="@id/id_novo_devices_dialog" />
     </fragment>
 
-    <dialog
-    android:id="@+id/id_devices_dialog_fragment"
-    android:name="com.dexcom.democonnectedpen.DialogFragmentDevicesAvailable"
-    tools:layout="@layout/dialog_devices_available">
-        <action
-            android:id="@+id/action_new_device_to_principal"
-            app:destination="@id/id_principal_fragment" />
-    </dialog>
+    <fragment
+        android:id="@+id/id_doses_fragment"
+        android:name="com.dexcom.democonnectedpen.ui.fragments.doses.FragmentDosesScreen"
+        tools:layout="@layout/fragment_doses_screen">
+    </fragment>
 
     <fragment
-        android:id="@+id/id_information_fragment"
-        android:name="com.dexcom.democonnectedpen.FragmentPenInformation"
+        android:id="@+id/id_pen_information_fragment"
+        android:name="com.dexcom.democonnectedpen.ui.fragments.peninformation.FragmentPenInformation"
         tools:layout="@layout/fragment_pen_information">
 
         <action
-            android:id="@+id/action_information_to_principal"
-            app:destination="@id/id_principal_fragment" />
+            android:id="@+id/action_pen_information_to_connections"
+            app:destination="@id/id_connections_fragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/id_lilly_devices_dialog"
+        android:name="com.dexcom.democonnectedpen.ui.dialogs.lillydevices.DialogLillyDevicesAvailable"
+        tools:layout="@layout/dialog_lilly_devices_available">
+        <action
+            android:id="@+id/action_lilly_devices_to_connections"
+            app:destination="@id/id_connections_fragment" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/id_novo_devices_dialog"
+        android:name="com.dexcom.democonnectedpen.ui.dialogs.novodevices.DialogNovoDevicesAvailable"
+        tools:layout="@layout/dialog_novo_devices_available">
+        <action
+            android:id="@+id/action_novo_devices_to_connections"
+            app:destination="@id/id_connections_fragment" />
+    </dialog>
 
 </navigation>

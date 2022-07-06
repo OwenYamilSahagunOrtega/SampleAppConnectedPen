@@ -3,16 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/font/roboto_medium.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/layout/activity_lilly.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/adapter_lilly.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout/dialog_devices_available.xml" value="0.2572463768115942" />
+        <entry key="app/src/main/res/layout/dialog_lilly_devices_available.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/dialog_novo_devices_available.xml" value="0.2866847826086957" />
+        <entry key="app/src/main/res/layout/dialog_search_devices_available.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_connections_screen.xml" value="0.19934143870314083" />
+        <entry key="app/src/main/res/layout/fragment_doses_screen.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/fragment_pen_information.xml" value="0.13645833333333332" />
         <entry key="app/src/main/res/layout/fragment_principal_screen.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/item_pen_list.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/main_content.xml" value="0.2572463768115942" />
+        <entry key="app/src/main/res/layout/row_connections.xml" value="0.14855072463768115" />
+        <entry key="app/src/main/res/layout/row_dose.xml" value="0.10108933339567387" />
         <entry key="app/src/main/res/layout/row_lilly.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/row_lilly_device.xml" value="0.234375" />
+        <entry key="app/src/main/res/menu/bottom_menu_nav.xml" value="0.2390625" />
       </map>
     </option>
   </component>

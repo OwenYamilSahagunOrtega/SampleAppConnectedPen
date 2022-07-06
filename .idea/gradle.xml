@@ -12,9 +12,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android-insulinpen" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/dialoqsdk" />
-            <option value="$PROJECT_DIR$/insulintransmitter" />
-            <option value="$PROJECT_DIR$/lillycore" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
