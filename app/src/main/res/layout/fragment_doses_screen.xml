@@ -11,7 +11,7 @@
         android:id="@+id/id_doses_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Doses"
+        android:text="@string/doses"
         android:textAppearance="@style/TextAppearance.Polaris.Headline5"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="You haven\'t any doses yet."
+                android:text="@string/you_haven_t_any_doses_yet"
                 android:textAppearance="@style/TextAppearance.Polaris.Header.Medium"
                 android:layout_margin="10dp"
                 android:visibility="gone"

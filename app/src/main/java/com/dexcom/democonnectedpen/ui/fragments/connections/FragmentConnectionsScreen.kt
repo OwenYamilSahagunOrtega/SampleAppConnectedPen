@@ -37,13 +37,13 @@ class FragmentConnectionsScreen: Fragment() {
                 val devices: List<InsulinPenInfo> = PenDataProvider.getInsulinPenInfoList().map { device -> device.info }.toList()
                 adapterConnections.setRegisteredDevices(devices)
             }
-            binding.idPenNoConnected.visibility = if (PenDataProvider.getInsulinPenInfoList().isEmpty()) { View.VISIBLE } else { View.GONE }
         } else {
             val message: String? = it.second.message
             if (message != null) {
                 showError(message)
             }
         }
+        binding.idPenNoConnected.visibility = if (PenDataProvider.getInsulinPenInfoList().isEmpty()) { View.VISIBLE } else { View.GONE }
     }
 
     override fun onCreateView(

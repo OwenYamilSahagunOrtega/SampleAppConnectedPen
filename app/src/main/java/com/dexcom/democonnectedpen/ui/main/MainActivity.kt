@@ -13,7 +13,7 @@ import com.dexcom.democonnectedpen.R
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
-    private var selectedItem = R.id.id_menu_pens;
+    private var selectedItem = R.id.id_menu_pens
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +32,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             Log.v("DEXCOM", "FragmentConnectionsScreen-item: ${it.title}")
             if (it.itemId == R.id.id_menu_pens) {
                 if (selectedItem != R.id.id_menu_pens) {
-                    selectedItem = R.id.id_menu_pens;
+                    selectedItem = R.id.id_menu_pens
                     navController.popBackStack()
                 }
             } else if (it.itemId == R.id.id_menu_doses) {
                 if (selectedItem != R.id.id_menu_doses) {
-                    selectedItem = R.id.id_menu_doses;
-                    navController.navigate(R.id.id_doses_fragment);
+                    selectedItem = R.id.id_menu_doses
+                    navController.navigate(R.id.id_doses_fragment)
                 }
             }
             true

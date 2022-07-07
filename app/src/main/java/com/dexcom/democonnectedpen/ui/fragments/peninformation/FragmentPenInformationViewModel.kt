@@ -6,6 +6,10 @@ import com.dexcom.democonnectedpen.R
 
 class FragmentPenInformationViewModel: ViewModel() {
 
+    fun remove(navController: NavController){
+        navController.navigate(R.id.action_pen_information_to_connections)
+    }
+
     fun toPrincipalScreen(navController: NavController){
         navController.navigate(R.id.action_pen_information_to_connections)
     }

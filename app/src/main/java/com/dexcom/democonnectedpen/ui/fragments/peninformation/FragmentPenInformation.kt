@@ -37,6 +37,7 @@ class FragmentPenInformation: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.penInformationTitle.text = "Name: ${insulinPenInfo.name}"
         binding.penInformationUuid.text = "UUID: ${insulinPenInfo.uuid}"
+        binding.penInformationBattery.text = "Battery: ${insulinPenInfo.batteryStatus}"
         binding.penInformationManufacturer.text = "Manufacturer: ${insulinPenInfo.manufacturerName}"
         binding.penInformationLastsync.text = "LastSync: ${insulinPenInfo.lastSync}"
         binding.penInformationSoftwareRevision.text = "Software: ${insulinPenInfo.softwareRevision}"

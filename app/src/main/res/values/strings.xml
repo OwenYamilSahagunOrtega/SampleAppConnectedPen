@@ -17,5 +17,14 @@
 
     <string name="pen_lilly_connected">This is Lilly Tempo connected.</string>
     <string name="pen_novo_connected">This is Novo Nordisk connected.</string>
+    <string name="menu_pens">Pens</string>
+    <string name="menu_doses">Doses</string>
+    <string name="novo_nordisk">Novo Nordisk</string>
+    <string name="enter_hrid_code">Enter HRID code</string>
+    <string name="star_scan">Star Scan</string>
+    <string name="doses">Doses</string>
+    <string name="you_haven_t_any_doses_yet">You haven\'t any doses yet.</string>
+    <string name="remove">Remove</string>
+    <string name="synchronize">Synchronize</string>
 
 </resources>

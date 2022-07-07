@@ -12,7 +12,7 @@ import com.dexcom.insulinpen.models.InsulinPenInfo
 import com.dexcom.insulinpen.models.InsulinPenManufacturer
 import com.google.gson.Gson
 
-class FragmentConnectionsScreenViewModel(): ViewModel() {
+class FragmentConnectionsScreenViewModel: ViewModel() {
 
     fun toDialogConnectNewPen(view: View, manufacturer: InsulinPenManufacturer){
         if (manufacturer == InsulinPenManufacturer.Lilly) {

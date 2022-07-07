@@ -2,7 +2,6 @@ package com.dexcom.democonnectedpen
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dexcom.democonnectedpen.dexcom.SingleLiveEvent
 import com.dexcom.insulinpen.controller.IBasePenController

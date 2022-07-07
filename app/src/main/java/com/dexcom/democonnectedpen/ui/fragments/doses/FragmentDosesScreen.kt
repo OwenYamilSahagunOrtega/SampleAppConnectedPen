@@ -25,10 +25,11 @@ class FragmentDosesScreen: Fragment() {
 
     private val insulinDosesObserver = Observer<List<InsulinPenDose>> {
         PenDataProvider.setInsulinPenDoseList(it)
-        val insulinDoses = PenDataProvider.getInsulinPenDoseList()
+        val insulinDoses = PenDataProvider.getInsulinPenDoseList().sortedByDescending { dose -> dose.doseTime }
         Log.v("DEXCOM", "FragmentDoses-insulinDosesLiveData: ${insulinDoses.size}")
         adapterDoses.setPenDoses(insulinDoses)
         binding.idDosesNoHave.visibility = if (insulinDoses.isEmpty()) { View.VISIBLE } else { View.GONE }
+        binding.idDosesLabel.text = "Doses ${insulinDoses.size}"
     }
 
     override fun onCreateView(
