@@ -25,6 +25,7 @@ android {
         minSdkVersion versions.minSDK
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "com.dexcom.democonnectedpen.ExampleInstrumentedTest"
         multiDexEnabled true
     }
 
@@ -66,13 +67,18 @@ dependencies {
     implementation "com.google.android.material:material:$versions.material"
     implementation "com.google.code.gson:gson:${versions.gson}"
 
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "com.android.support.test:runner:${versions.testRunner}"
+    androidTestImplementation "com.android.support.test:rules:${versions.testRules}"
+    androidTestImplementation 'androidx.test:runner:1.5.0-alpha04'
+
     implementation "org.koin:koin-android:$versions.koin"
     implementation "org.koin:koin-androidx-scope:$versions.koin"
     implementation "org.koin:koin-androidx-viewmodel:$versions.koin"
 
     //implementation partner lib
     //implementation "com.dexcom.insulinpen-sdk:android-insulinpen-sdk:beta-0.0.1.11"
-//[119, 73, 104, 105, 118, 83, 55, 117, 74, 110, 86, 57, 98, 121, 72, 103, 98, 113, 114, 103, 50, 103, 61, 61]}
     implementation "com.dexcom.connectedpens:eli-lilly-transmitter:4.2.0@aar"
     implementation "com.dexcom.connectedpens:eli-lilly:3.0.1@aar"
     implementation "com.dexcom.connectedpens:dialoqsdk:4.0.0-18@aar"

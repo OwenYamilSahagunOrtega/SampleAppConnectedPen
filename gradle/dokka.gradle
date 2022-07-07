@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2021 Dexcom, Inc.
+ * Licenses to third-party material that may be incorporated into this software are listed at www.dexcom.com/notices
+ */
+
+//Android CoreSDK Gradle Version: 1.0
+
+apply plugin: 'org.jetbrains.dokka'
+
+// START -- Dokka
+task dokka(dependsOn: 'dokkaJavadoc') // Alias, default document type to javadoc.
+
+task javadocZip(type: Zip, dependsOn: dokka) {
+    archiveClassifier.set('javadoc')
+    from "$buildDir/dokka/javadoc" //Update this path if you aren't doing javadoc zips
+    getDestinationDirectory().set(file("$buildDir/dokka"))
+    getArchiveFileName().set("${project.name}-Docs.zip")
+}
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from "$buildDir/dokka/javadoc"
+    getDestinationDirectory().set(file("$buildDir/dokka"))
+    getArchiveFileName().set("${project.name}-Docs.jar")
+}
+dokka.finalizedBy(javadocJar)
+dokka.finalizedBy(javadocZip)
+// END -- Dokka
+
+//START - Sources
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from "$projectDir/src/main/java"
+    getDestinationDirectory().set(file("$buildDir/sources"))
+    getArchiveFileName().set("${project.name}-Sources.jar")
+}
+dokka.finalizedBy(sourcesJar)
+//END - Sources

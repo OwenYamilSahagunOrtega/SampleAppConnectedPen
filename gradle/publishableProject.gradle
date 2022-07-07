@@ -1,0 +1,182 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+ext{
+    buildName = project.properties['build_name']
+    buildUrl = project.properties['build_url']
+    versionName = project.properties['version_name']
+    buildNumber = getBuildNumber(0)
+    gitCommitLongName = gitCommitLongName()
+    libArtifactId = getArtifactId()
+    libVersion = getPublishVersion()
+}
+
+artifactory {
+    contextUrl = "$artifactoryUrl"
+
+    publish {
+        repository {
+            repoKey = 'libs-snapshot-local'
+            username = "$artifactoryUser"
+            password = "$artifactoryPassword"
+            maven = true
+        }
+        defaults {
+            publishArtifacts = true
+            publishPom = true
+            publishIvy = false
+            properties = [
+                    'vcs.commit'     : gitCommitLongName,
+                    'vcs.branch'     : gitBranchName,
+                    'ci.build.number': ciBuildNumber,
+                    'ci.build.name'  : buildName,
+                    'ci.build.url'   : buildUrl
+            ]
+        }
+    }
+
+    clientConfig.info.setBuildNumber("$buildNumber")
+}
+
+def publishableProjects = ["android-insulinpen"]
+subprojects {
+    if (publishableProjects.contains(project.getName())) {
+        publishing {
+            publications {
+                releaseArtifacts(MavenPublication) {
+                    groupId = 'com.dexcom.insulinpen-sdk'
+                    artifactId = libArtifactId
+                    version = "${libVersion}.${buildNumber}"
+                    artifact("${buildDir}/outputs/aar/${project.getName()}-release.aar") {
+                        classifier ''
+                    }
+                    pom.withXml {
+                        def dependenciesNode = asNode().appendNode('dependencies')
+                        project.configurations.implementation.allDependencies.each { dependency ->
+                            if (dependency.name != "unspecified") {
+                                def dependencyNode = dependenciesNode.appendNode('dependency')
+                                dependencyNode.appendNode('groupId', dependency.group)
+                                dependencyNode.appendNode('artifactId', dependency.name)
+                                dependencyNode.appendNode('version', dependency.version)
+                            }
+                        }
+                    }
+                    artifact ("${buildDir}/dokka/${project.getName()}-Docs.zip") {
+                        classifier 'docs'
+                    }
+                    artifact ("${buildDir}/sources/${project.getName()}-Sources.jar") {
+                        classifier 'sources'
+                    }
+                }
+                debugArtifacts(MavenPublication) {
+                    groupId = 'com.dexcom.insulinpen-sdk.debug'
+                    artifactId = libArtifactId
+                    version = "${libVersion}.${buildNumber}"
+                    artifact("${buildDir}/outputs/aar/${project.getName()}-debug.aar") {
+                        classifier ''
+                    }
+                    pom.withXml {
+                        def dependenciesNode = asNode().appendNode('dependencies')
+                        project.configurations.implementation.allDependencies.each { dependency ->
+                            if (dependency.name != "unspecified") {
+                                def dependencyNode = dependenciesNode.appendNode('dependency')
+                                dependencyNode.appendNode('groupId', dependency.group)
+                                dependencyNode.appendNode('artifactId', dependency.name)
+                                dependencyNode.appendNode('version', dependency.version)
+                            }
+                        }
+                    }
+                    artifact ("${buildDir}/dokka/${project.getName()}-Docs.zip") {
+                        classifier 'docs'
+                    }
+                    artifact ("${buildDir}/sources/${project.getName()}-Sources.jar") {
+                        classifier 'sources'
+                    }
+                }
+            }
+            artifactoryPublish {
+                if (libArtifactId != null) {
+                    publications(publishing.publications.releaseArtifacts)
+                    publications(publishing.publications.debugArtifacts)
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @return current branch name
+ */
+def getGitBranchName() {
+    def branchName = project.properties["git_branch_name"]
+    if (branchName != null) {
+        return branchName
+    }
+    def process = "git symbolic-ref --short -q HEAD".execute()
+    process.waitFor()
+
+    return process.text.trim()
+}
+
+/**
+ * @return Full commit hash of the build
+ */
+String gitCommitLongName() {
+    def sha = project.properties["git_commit_long_name"]
+    if (sha != null) {
+        return sha
+    }
+    def process = "git rev-parse --verify HEAD".execute()
+    process.waitFor()
+
+    return process.text.trim()
+}
+
+/**
+ * This is to account for concurrent development happening
+ * @return an version corresponding to the name of the current branch
+ */
+String getPublishVersion() {
+    String branchRef = project.properties['branch_ref'] ?: ''
+    if (branchRef.startsWith('refs/heads/release/')) {
+        def regex = ~'^refs/heads/release/'
+        branchRef - regex
+    } else if (branchRef.startsWith('refs/heads/hotfix/')) {
+        def regex = ~'^refs/heads/hotfix/'
+        branchRef - regex
+    } else {
+        "beta-${version_name}"
+    }
+}
+
+/**
+ * @return Build number property with 0 as the default. A build number of '0' indicates a local build
+ */
+String getCiBuildNumber() {
+    return project.properties["build_number"] ?: "0"
+}
+
+/**
+ * @param padding Build number offset to add
+ * @return Build Number with padding offset. A build number of '0' indicates that this is a local build
+ */
+String getBuildNumber(int padding) {
+    int ciBuildNumber = getCiBuildNumber() as Integer
+    if (ciBuildNumber == 0) {
+        return "0"
+    }
+    return "${padding + ciBuildNumber}"
+}
+
+/**
+ * This is to account for concurrent development happening
+ * @return an artifact Id corresponding to the name of the current branch
+ */
+String getArtifactId() {
+    String branchRef = project.properties['branch_ref'] ?: ''
+    if (branchRef.startsWith('refs/heads/release/') || branchRef.startsWith('refs/heads/hotfix/') || branchRef == 'refs/heads/develop') {
+        return 'android-insulinpen-sdk'
+    } else {
+        return 'android-insulinpen-sdk-branch'
+    }
+}

@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2021 Dexcom, Inc.
+ * Licenses to third-party material that may be incorporated into this software are listed at www.dexcom.com/notices
+ */
+
+// Load property values from 'local.properties'
+// These would take priority over props in 'gradle.properties' when accessed via 'ext'
+def file = rootProject.file("local.properties")
+if (file.exists()) {
+    def props = new Properties()
+    props.load(new FileInputStream(file))
+    props.each { k, v -> ext[k] = v }
+}
+
+ext {
+    artifactoryPassword = getArtifactoryPassword()
+    artifactoryUser = getArtifactoryUser()
+    artifactoryUrl = getArtifactoryUrl()
+    dexcomArtifactoryRepositories = {
+        maven {
+            url "${artifactoryUrl}/libs-release-local"
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        maven {
+            url "${artifactoryUrl}/libs-snapshot-local"
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        maven {
+            url "${artifactoryUrl}/libs-release"
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        maven {
+            url "${artifactoryUrl}/libs-snapshot"
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        if (System.env["CI"]) {
+            maven {
+                url "${artifactoryUrl}/libs-whitebox-release"
+                credentials {
+                    username = artifactoryUser
+                    password = artifactoryPassword
+                }
+            }
+        } else {
+            maven {
+                url "${artifactoryUrl}/libs-whitebox-snapshot"
+                credentials {
+                    username = artifactoryUser
+                    password = artifactoryPassword
+                }
+            }
+        }
+    }
+}
+
+def getArtifactoryUser() {
+    def prop = project.properties["artifactory_user"]
+    if (prop != null) {
+        return prop
+    }
+    return System.env["ARTIFACTORY_USER"]
+}
+
+def getArtifactoryPassword() {
+    def prop = project.properties["artifactory_password"]
+    if (prop != null) {
+        return prop
+    }
+    return System.env["ARTIFACTORY_PASSWORD"]
+}
+
+def getArtifactoryUrl() {
+    def prop = project.properties["artifactory_url"]
+    if (prop != null) {
+        return prop
+    }
+    return System.env["ARTIFACTORY_URL"]
+}
